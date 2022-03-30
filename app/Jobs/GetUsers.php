@@ -2,27 +2,27 @@
 
 namespace App\Jobs;
 
-use App\Mail\SendEmailTest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Models\User;
+use App\Jobs\SendEmailJob;
 
-class SendEmailJob implements ShouldQueue
+class GetUsers implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $details;
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct()
     {
-        $this->details = $details;
+        //
     }
 
     /**
@@ -32,7 +32,15 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-        $email = new SendEmailTest();
-        \Mail::to('admin@admin.com')->send($email);
+        $users = collect(User::all());//13
+        $usersChunked = $users->chunk(4);// 4 Jobs
+        $usersCount = count($users);
+        $now = now();
+
+        // dd($usersChunked);
+
+        $users->chunk($usersCount)->each(function($usersChunked) use($now){
+            SendEmailJob::dispatch($usersChunked)->delay($now->addSeconds(2));
+        });   
     }
 }

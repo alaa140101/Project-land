@@ -19,11 +19,13 @@ Route::get('/', function () {
 });
 
 Route::get('email-test', function(){
-    $details['email'] = 'your_email@gmail.com';
-    dispatch(new App\Jobs\SendEmailJob($details));
-    dd('done');
-
+    // $details['email'] = 'your_email@gmail.com';
+    dispatch(new App\Jobs\GetUsers);
     });
 
-    Route::get('send-bulk-mail', [SendBulkMailController::class, 'sendBulkMail'])->name('send-bulk-mail');
+    Route::get('send-bulk-mail', function(){
+        $details['email'] = 'your_email@gmail.com';
+        dispatch(new App\Jobs\SendBulkQueueEmail($details));
+        dd('done');
+    })->name('send-bulk-mail');
 
