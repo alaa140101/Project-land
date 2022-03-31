@@ -14,9 +14,9 @@ class UserController extends Controller
         $users = User::all();
         $chunks = $users->chunk(2);
 
-        foreach ($chunks as $chunk) {
-           dd($chunk[0]->email);
-        };
+        // foreach ($chunks as $chunk) {
+        //    dd($chunk[0]->email);
+        // };
 
         return view('welcome', compact('users'));
     }

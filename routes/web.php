@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'App\Http\Controllers\UserController@index');
+
+Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
+
+Route::get('/users', 'App\Http\Controllers\UserController@index');
 
 Route::get('email-test', function(){
     // $details['email'] = 'your_email@gmail.com';
@@ -26,3 +29,7 @@ Route::get('email-test', function(){
         dd('done');
     })->name('send-bulk-mail');
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
