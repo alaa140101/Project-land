@@ -33,12 +33,20 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users">{{ __('Users') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/projects">{{ __('Projects') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">{{ __('Ar') }}</a>
+                        </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -78,6 +86,21 @@
         <main class="py-4">
             @yield('content')
         </main>
+        <footer>
+            <div class="container">
+                @guest
+                <form action="{{route('user.store')}}" method="post">
+                @csrf
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" name="email">
+                        <button type="submit" class="btn btn-info">
+                            <span class="text-white">email@example.com</span>
+                        </button>
+                    </div>
+                </form>
+                @endguest
+            </div>
+        </footer>
     </div>
 </body>
 </html>

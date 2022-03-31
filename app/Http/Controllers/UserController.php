@@ -7,6 +7,18 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    public $user;
+    
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     
 
     public function index()
@@ -18,6 +30,27 @@ class UserController extends Controller
         //    dd($chunk[0]->email);
         // };
 
-        return view('welcome', compact('users'));
+        return view('users', compact('users'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'required',
+        ]);
+
+        $user = new User;
+
+        $user->email = $request->email;
+        $user->save();
+
+
+        return back();
     }
 }

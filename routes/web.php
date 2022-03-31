@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
 
 Route::get('/users', 'App\Http\Controllers\UserController@index');
+Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
 
 Route::get('email-test', function(){
     // $details['email'] = 'your_email@gmail.com';
