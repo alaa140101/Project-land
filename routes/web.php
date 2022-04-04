@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// routes/web.php
 
-Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
-
-Route::get('/users', 'App\Http\Controllers\UserController@index');
-Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
+Route::group(['prefix' => LaravelLocalization::setLocale()], function()
+{
+	
+    Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
+    
+    Route::get('/users', 'App\Http\Controllers\UserController@index');
+    Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
+});
 
 Route::get('email-test', function(){
     // $details['email'] = 'your_email@gmail.com';
