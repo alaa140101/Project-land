@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
 	
+    Route::get('/', 'App\Http\Controllers\UserController@index');
     Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
     
     Route::get('/users', 'App\Http\Controllers\UserController@index');
