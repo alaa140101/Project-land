@@ -7,7 +7,7 @@
         <thead>
             <tr>
                 <th scope="col">{{__('Name')}}</th>
-                <th scope="col">email</th>
+                <th scope="col">{{__('Email')}}</th>
             </tr>
         </thead>
         <tbody>

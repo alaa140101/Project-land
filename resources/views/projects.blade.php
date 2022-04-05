@@ -6,8 +6,8 @@
     <table  class="table">
         <thead>
             <tr>
-                <th scope="col">Title</th>
-                <th>describtion</th>
+                <th scope="col">{{__('Title')}}</th>
+                <th>{{__('description')}}</th>
             </tr>
         </thead>
         <tbody>

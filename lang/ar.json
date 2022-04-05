@@ -1,6 +1,7 @@
 {
     "Login": "الدخول",
     "Email Address": "البريد الالكتروني",
+    "Email": "البريد الالكتروني",
     "Password": "Password",
     "Remember Me": "Remember Me",
     "Forgot Your Password?": "Forgot Your Password?",
@@ -785,7 +786,7 @@
     "validation.quotationError": "يجب أن تستخدم قيمة غير-مارك علامات اقتباس",
     "validation.selectAnAction": "يجب تحديد إجراء قبل حفظ البروفايل",
     "record": "تسجيلة",
-    "title": "العنوان",
+    "Title": "العنوان",
     "error": "خطأ",
     "filter.singleRecordImports": "استيرادات تسجيلة مفردة بالمخزون",
     "filter.option.yes": "نعم",
