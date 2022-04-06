@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects') }}" class="nav-link">{{ __('Projects') }}</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('Create Project') }}</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -94,6 +97,12 @@
         </nav>
 
         <main class="py-4">
+            @if (Session::has('success'))
+                <div class="p-3 mb-2 bg-success text-white rounded mx-auto col-8">
+                    <span class="text-center">{{ session('success') }}</span>
+                </div>        
+            @endif
+
             @yield('content')
         </main>
         <footer>

@@ -20,6 +20,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 	
     Route::get('/', 'App\Http\Controllers\UserController@index');
     Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
+    Route::get('/projects/create', 'App\Http\Controllers\ProjectController@create')->name('project.create');
+    Route::get('/projects/store', 'App\Http\Controllers\ProjectController@store')->name('project.store');
     
     Route::get('/users', 'App\Http\Controllers\UserController@index');
     Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
