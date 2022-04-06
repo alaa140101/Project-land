@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\User;
 
 class ProjectController extends Controller
 {
@@ -26,7 +27,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('projects.create-project');
+        $users = User::select('name', 'id')->get();
+        return view('projects.create-project', compact('users'));
     }
 
     /**
@@ -40,12 +42,14 @@ class ProjectController extends Controller
         // dd($request);
         $this->validate($request, [
             'title' => 'required',
+            'user_id' => 'required',
+            'body'=> 'required'
         ]);
 
         $project = Project::create([
             'title' => $request->title,
             'body' => $request->body,
-            'user_id' => auth()->id(),
+            'user_id' => $request->user_id,
         ]);
 
 
