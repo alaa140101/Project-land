@@ -32,11 +32,13 @@ Route::get('email-test', function(){
     dispatch(new App\Jobs\GetUsers);
     });
 
-    Route::get('send-bulk-mail', function(){
-        $details['email'] = 'your_email@gmail.com';
-        dispatch(new App\Jobs\SendBulkQueueEmail($details));
-        dd('done');
-    })->name('send-bulk-mail');
+    // Route::get('send-bulk-mail', function(){
+    //     // $details['email'] = 'your_email@gmail.com';
+    //     // dispatch(new App\Jobs\SendBulkQueueEmail($details));
+    //     // dd('done');
+        
+    // })->name('send-bulk-mail');
+    Route::get('send-bulk-mail', 'App\Http\Controllers\SendBulkMailController@storemail')->name('send-bulk-mail');
 
 
 Auth::routes();
