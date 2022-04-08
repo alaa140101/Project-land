@@ -10,7 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use App\Models\User;
-// use Illuminate\Support\Facades\Mail;
 
 class SendEmailJob implements ShouldQueue
 {
@@ -29,7 +28,6 @@ class SendEmailJob implements ShouldQueue
   {
     $this->details = $details;
     $this->emails = collect($emails);
-    // info($emails);
   }
   
   /**
@@ -47,7 +45,7 @@ class SendEmailJob implements ShouldQueue
     $input['message'] = $this->details['message'];
     info($users);
     
-    sleep(2);
+    sleep(1);
     foreach ($users as $user) {
       $input['email'] = $user->email;
       info($user->email);
