@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use App\Jobs\SendEmailJob;
+// use App\Jobs\SendEmailJob;
 
 class SendBulkMailController extends Controller
 {
@@ -41,16 +41,9 @@ class SendBulkMailController extends Controller
       'message' => 'hellow world'
     ];
 
-    // نقسم النتيجة الى دفعات وننشئ عملا لكل منها
-    // $emails = User::select('email')->get();
     User::select('email')->chunk(4, function ($emails) use ($details) {
-        // info($emails);
-            dispatch(new  SendEmailJob($details, $emails));
+            dispatch(new  \App\Jobs\SendEmailJob($details, $emails))->delay(2);
       });
-  
-
-
-    // return redirect()->back()->with('success', 'mail have successfully sent');
   }
 
 }
