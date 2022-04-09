@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col">{{__('Name')}}</th>
                 <th scope="col">{{__('Email')}}</th>
+                <th scope="col">{{__('Admin')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
+                <td>{{$user->is_admin}}</td>
             </tr>
             @endforeach
         </tbody>

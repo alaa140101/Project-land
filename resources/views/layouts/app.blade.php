@@ -45,12 +45,16 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects') }}" class="nav-link">{{ __('Projects') }}</a>
                         </li>
+                        @auth                            
+                        @if (auth()->user()->is_admin)
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('Create Project') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/sendEmails') }}" class="nav-link">{{ __('Send Emails') }}</a>
                         </li>
+                        @endif
+                        @endauth
                     </ul>
 
                     <!-- Right Side Of Navbar -->
