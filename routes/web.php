@@ -22,6 +22,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
     Route::get('/projects/create', 'App\Http\Controllers\ProjectController@create')->name('project.create');
     Route::post('/projects/store', 'App\Http\Controllers\ProjectController@store')->name('project.store');
+    Route::get('/projects/{id}/edit', 'App\Http\Controllers\ProjectController@edit')->name('project.edit');
+    Route::patch('/projects/{id}/update', 'App\Http\Controllers\ProjectController@update')->name('project.update');
     
     Route::get('/users', 'App\Http\Controllers\UserController@index');
     Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');

@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col">{{__('Title')}}</th>
                 <th>{{__('description')}}</th>
+                <th>{{__('Edit')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <tr>
                 <td><h3>{{$project->title}}</h3></td>
                 <td><p>{{$project->body}}</p></td>
+                <td><p><a href="projects/{{$project->id}}/edit">Edit</a></p></td>
             </tr>
             @endforeach
         </tbody>

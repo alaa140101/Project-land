@@ -11,13 +11,8 @@ class ProjectController extends Controller
     public function index()
     {
         $projects = Project::all();
-        $chunks = $projects->chunk(2);
         
-        // foreach ($chunks as $chunk) {
-            //    dd($chunk[0]->email);
-            // };
-            
-            return view('projects', compact('projects'));
+        return view('projects', compact('projects'));
     }
 
      /**
@@ -39,7 +34,6 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $this->validate($request, [
             'title' => 'required',
             'user_id' => 'required',
@@ -62,5 +56,32 @@ class ProjectController extends Controller
     {
 
         return view('projects.show-project', compact('project'));
+    }
+
+    public function edit($id)
+    {
+        $project = Project::where('id', $id)->first();
+
+        return view('projects.edit-project', compact('project'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $project = Project::where('id', $id)->first();
+        
+        $project->title = $request->title;
+        $project->body = $request->body;
+
+        $project->save();
+
+        return redirect('/projects')->with(
+            'success',
+            'تم تعديل المشروع بنجاح'
+        );
     }
 }
