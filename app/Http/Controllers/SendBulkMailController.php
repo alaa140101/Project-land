@@ -38,15 +38,13 @@ class SendBulkMailController extends Controller
       'message' => $request->input('message')
     ];
    
-    // dd($details);
-
     // How many emails per Job
     $chunkedEmails = 25;
 
 
-    // User::select('email')->chunk($chunkedEmails, function ($emails) use ($details) {
-    //   dispatch(new  SendEmailJob($details, $emails));
-    // });
+    User::select('email')->chunk($chunkedEmails, function ($emails) use ($details) {
+      dispatch(new  SendEmailJob($details, $emails));
+    });
 
     return redirect()->back()->with('success', 'تم ارسال الايملاات بنجاح');
     }
