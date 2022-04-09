@@ -43,20 +43,19 @@ class SendEmailJob implements ShouldQueue
     $users = $this->emails;
     $input['title'] = $this->details['title'];
     $input['message'] = $this->details['message'];
-    info($users);
     
-    sleep(1);
     foreach ($users as $user) {
       $input['email'] = $user->email;
-      info($user->email);
+      
       \Mail::send(
         'emails.test',
         ['input' => $input],
         function ($message) use ($input) {
           $message->to($input['email'])->subject($input['title']);
         }
-      );
-      sleep(1);
+      )->later(now()->addSeconds(2));
+
+      sleep(2);
     } 
   }
 }

@@ -25,20 +25,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     
     Route::get('/users', 'App\Http\Controllers\UserController@index');
     Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
+    
+    Route::get('/sendEmails', 'App\Http\Controllers\SendBulkMailController@show');
+    Route::post('/emails', 'App\Http\Controllers\SendBulkMailController@store')->name('sendbulkmail.store');
 });
-
-Route::get('email-test', function(){
-    // $details['email'] = 'your_email@gmail.com';
-    dispatch(new App\Jobs\GetUsers);
-    });
-
-    // Route::get('send-bulk-mail', function(){
-    //     // $details['email'] = 'your_email@gmail.com';
-    //     // dispatch(new App\Jobs\SendBulkQueueEmail($details));
-    //     // dd('done');
-        
-    // })->name('send-bulk-mail');
-    Route::get('send-bulk-mail', 'App\Http\Controllers\SendBulkMailController@storemail')->name('send-bulk-mail');
 
 
 Auth::routes();

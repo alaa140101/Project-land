@@ -15,7 +15,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    {{-- <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"> --}}
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
@@ -47,6 +47,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('Create Project') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/sendEmails') }}" class="nav-link">{{ __('Send Emails') }}</a>
                         </li>
                     </ul>
 
