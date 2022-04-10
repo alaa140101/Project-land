@@ -22,7 +22,7 @@
 
 ثم نقوم بعمل التهجير بواسطة الامر:
 ```php
-php artisan migreate --seed
+php artisan migrate --seed
 ```
 
 ## عدد الإيميلات المرسلة لكل مهمة(Job)  
