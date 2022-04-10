@@ -18,9 +18,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(13)->create();
-        User::factory(11)
-            ->has(Project::factory()->count(3))
+        // You can change Users number and Porjects 
+        $numberofUsers = 10;
+        $userHasProjects = 3;
+
+        User::factory($numberofUsers)
+            ->has(Project::factory()->count($userHasProjects))
             ->create();
     }
 }
