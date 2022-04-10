@@ -22,6 +22,12 @@
 php artisan migreate --seed
 ```
 
+## عدد الإيميلات المرسلة لكل مهمة(Job)  
+نقوم بالتعديل على ملف SendBulkMailController والموجود داخل App\Http\Controllers وتغيير قيمة المتغير 
+```php
+// How many emails per Job
+    $chunkedEmails = 25;
+```
 ## التعديلات على ملف .env
 
 -QUEUE_DRIVER=database
