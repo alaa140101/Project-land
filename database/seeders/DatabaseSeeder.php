@@ -8,6 +8,8 @@ use App\Models\{
     User,
     Project,
 };
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,9 +20,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(13)->create();
-        User::factory(11)
-            ->has(Project::factory()->count(3))
+        // You can change Users number and Porjects 
+        $numberofUsers = 10;
+        $userHasProjects = 3;
+
+        User::factory($numberofUsers)
+            ->has(Project::factory()->count($userHasProjects))
             ->create();
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'is_admin' => true,
+            'password' => Hash::make('password'),
+        ]);
     }
 }
