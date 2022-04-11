@@ -22,8 +22,8 @@
 -التعديل عليها
 - ارسال ايملات للمستخدمين
 
-**لإستخدام صلاحية مدير يرجى إدخال ايميل المستخدم : admin@admin.com
-وكلمة المرور: password
+** لإستخدام صلاحية مدير يرجى إدخال ايميل المستخدم : admin@admin.com
+وكلمة المرور: password  **
 
 ## البيانات
 
@@ -48,12 +48,12 @@ php artisan migrate --seed
 ```
 ## التعديلات على ملف .env
 
--QUEUE_DRIVER=database
--MAIL_MAILER=smtp
--MAIL_HOST=smtp.mailtrap.io
--MAIL_PORT=2525
--MAIL_USERNAME=اسم المستخدم 
--MAIL_PASSWORD=كلمة المرور
+- QUEUE_DRIVER=database
+- MAIL_MAILER=smtp
+- MAIL_HOST=smtp.mailtrap.io
+- MAIL_PORT=2525
+- MAIL_USERNAME=اسم المستخدم 
+- MAIL_PASSWORD=كلمة المرور
 
 
 
