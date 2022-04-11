@@ -18,21 +18,15 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
 	
-    Route::get('/', 'App\Http\Controllers\UserController@index');
-    Route::get('/projects', 'App\Http\Controllers\ProjectController@index');
-   
-    
-    Route::get('/users', 'App\Http\Controllers\UserController@index');
+    Route::get('/', 'App\Http\Controllers\ProjectController@all');
+    Route::get('/myprojects', 'App\Http\Controllers\ProjectController@index');
+    Route::get('/projects/{id}', 'App\Http\Controllers\ProjectController@show')->name('project.show');
     Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
     
-   
-
     Route::group(['middleware' => 'admin'], function () {
+        
+        Route::resource('/projects', 'App\Http\Controllers\ProjectController')->except(['index', 'all', 'show']);
 
-        Route::get('/projects/create', 'App\Http\Controllers\ProjectController@create')->name('project.create');
-        Route::post('/projects/store', 'App\Http\Controllers\ProjectController@store')->name('project.store');
-        Route::get('/projects/{id}/edit', 'App\Http\Controllers\ProjectController@edit')->name('project.edit');
-        Route::patch('/projects/{id}/update', 'App\Http\Controllers\ProjectController@update')->name('project.update');
 
         Route::get('/sendEmails', 'App\Http\Controllers\SendBulkMailController@show');
         Route::post('/emails', 'App\Http\Controllers\SendBulkMailController@store')->name('sendbulkmail.store');

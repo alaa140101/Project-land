@@ -8,24 +8,43 @@ use App\Models\User;
 
 class ProjectController extends Controller
 {
+    public $project;
+    
+    public function __construct(Project $project)
+    {
+        $this->project = $project;
+    }
+
 
     public function index()
     {
         if(auth()->user()){
-            $projects = auth()->user()->projects;
+            $projects = $this->project::where('user_id', auth()->user()->id)->get();
         }
-        else {
-            $projects = Project::all();
-        }
+        
         return view('projects.my-projects', compact('projects'));
     }
 
-    // public function all()
-    // {
-    //     $projects = Project::all();
-        
-    //     return view('projects', compact('projects'));
-    // }
+    
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $project = $this->project->find($id);
+
+        return view('projects.show-project', compact('project'));
+    }
+
+    public function all()
+    {
+        $projects = $this->project::all();
+
+        return view('projects.all-projects', compact('projects'));
+    }
 
      /**
      * Show the form for creating a new resource.
@@ -64,12 +83,7 @@ class ProjectController extends Controller
             'تمت اضافة مشروع جديد'
         );
     }
-    public function show(Project $project)
-    {
-
-        return view('projects.show-project', compact('project'));
-    }
-
+    
     public function edit($id)
     {
         $project = Project::where('id', $id)->first();

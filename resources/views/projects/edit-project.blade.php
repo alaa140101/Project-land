@@ -29,6 +29,23 @@
                 <button type="submit" class="btn btn-secondary">{{__('Edit')}}</button>
             </div>
           </div>
+          
+          <small class="text-muted">                 
+            <i class="fas fa-clock"></i> <span> {{$project->created_at->diffForHumans()}}</span>
+          </small>
+          @if(auth()->user()->administration_level > 0)                      
+          <form method="POST" action="{{route('projects.destroy', $project->id)}}" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف المشروع هذا ؟')">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="float-left"><i class="far fa-trash-alt text-danger fa-lg"></i></button>
+            </form>
+
+            <form action="{{route('projects.edit', $project->id)}}" method="get">
+            @csrf
+            @method('PATCH')
+            <button class="float-left" type="submit"><i class="far fa-edit text-success fa-lg ml-3"></i></button>
+            </form>
+          @endif
         </form>     
       </div>
     </div>

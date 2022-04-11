@@ -43,18 +43,22 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a href="{{ LaravelLocalization::localizeUrl('/users') }}" class="nav-link">{{ __('Users') }}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects') }}" class="nav-link">{{ __('Projects') }}</a>
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/') }}" class="nav-link">{{ __('Projects') }}</a>
                         </li>
                         @auth                            
                         @if (auth()->user()->is_admin)
+                        <li class="nav-item">
+                            <a href="{{ LaravelLocalization::localizeUrl('/users') }}" class="nav-link">{{ __('Users') }}</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('Create Project') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/sendEmails') }}" class="nav-link">{{ __('Send Emails') }}</a>
+                        </li>
+                        @else 
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/myprojects') }}" class="nav-link">{{ __('My Projects') }}</a>
                         </li>
                         @endif
                         @endauth
@@ -117,7 +121,7 @@
         </main>
         <footer>
             <div class="container">
-                @guest
+                @auth
                 <form action="{{route('user.store')}}" method="post">
                 @csrf
                     <div class="input-group mb-3">
@@ -127,7 +131,7 @@
                         </button>
                     </div>
                 </form>
-                @endguest
+                @endauth
             </div>
         </footer>
     </div>

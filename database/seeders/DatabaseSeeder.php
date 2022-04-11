@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
     {
         // You can change Users number and Porjects 
         $numberofUsers = 10;
-        $userHasProjects = 3;
+        $userHasProjects = 5;
 
         User::factory($numberofUsers)
             ->has(Project::factory()->count($userHasProjects))
