@@ -20,6 +20,9 @@
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
     {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+
+    <script src="https://kit.fontawesome.com/6da2c478e2.js" crossorigin="anonymous"></script>
+
 </head>
 <body @if(LaravelLocalization::getCurrentLocale() == 'ar')
         dir="rtl" style="text-align:right;" lang="ar"

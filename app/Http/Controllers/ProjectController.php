@@ -8,12 +8,24 @@ use App\Models\User;
 
 class ProjectController extends Controller
 {
+
     public function index()
     {
-        $projects = Project::all();
-        
-        return view('projects', compact('projects'));
+        if(auth()->user()){
+            $projects = auth()->user()->projects;
+        }
+        else {
+            $projects = Project::all();
+        }
+        return view('projects.my-projects', compact('projects'));
     }
+
+    // public function all()
+    // {
+    //     $projects = Project::all();
+        
+    //     return view('projects', compact('projects'));
+    // }
 
      /**
      * Show the form for creating a new resource.
@@ -83,5 +95,14 @@ class ProjectController extends Controller
             'success',
             'تم تعديل المشروع بنجاح'
         );
+    }
+
+    public function destroy($id)
+    {
+        $project = Project::where('id', $id)->first();
+        
+        $project->delete();
+
+        return back()->with('success', 'تم حذف مقطع الفيديو بنجاح');
     }
 }
