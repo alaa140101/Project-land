@@ -43,9 +43,10 @@ class UserController extends Controller
         $user = new User;
 
         $user->email = $request->email;
+
         $user->save();
+        
 
-
-        return back();
+        return redirect()->back()->with('success','تمت اضافة بريدك ');
     }
 }

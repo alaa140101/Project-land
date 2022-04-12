@@ -81,10 +81,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect()->back()->with(
-            'success',
-            'تمت اضافة مشروع جديد'
-        );
+        return redirect()->back()->with('success','تمت اضافة مشروع جديد');
     }
     
     public function edit($id)

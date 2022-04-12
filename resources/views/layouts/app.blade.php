@@ -130,7 +130,7 @@
                         <div class="col-4">
                             <div class="form-group mb-2">
                                 <label for="staticEmail2" class="sr-only">Email</label>
-                                <input type="text"  class="form-control" id="staticEmail2" value="email@example.com">
+                                <input type="email" name="email"  class="form-control" id="staticEmail2" placeholder="email@example.com">
                               </div>
                         </div>
                         <div class="col-4">
