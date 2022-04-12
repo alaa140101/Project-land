@@ -29,12 +29,12 @@
 
 ## البيانات
 
-بالإمكان تغيير عدد المستخدمين والمشاريع التي يملكونها من خلال الملف DatabaseSeeder.php
+بالإمكان تغيير عدد المستخدمين والمشاريع التي يملكونها من خلال الملف Database\Seeders\DatabaseSeeder.php
 
 ```php
 // You can change Users number and Porjects 
-        $numberofUsers = 10;
-        $userHasProjects = 3;
+        $numberofUsers = 1000;
+        $userHasProjects = 5;
 ```
 
 ثم نقوم بعمل التهجير بواسطة الامر:
