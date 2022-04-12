@@ -18,20 +18,23 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
 	
-    Route::get('/', 'App\Http\Controllers\ProjectController@all');
-    Route::get('/myprojects', 'App\Http\Controllers\ProjectController@index');
-    Route::get('/projects/{id}', 'App\Http\Controllers\ProjectController@show')->name('project.show');
-    Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
-    
     Route::group(['middleware' => 'admin'], function () {
         
-        Route::resource('/projects', 'App\Http\Controllers\ProjectController')->except(['index', 'all', 'show']);
+        // Route::resource('/projects', 'App\Http\Controllers\ProjectController')->except(['index', 'all', 'show']);
+        Route::resource('/projects', 'App\Http\Controllers\ProjectController');
 
+        Route::get('/users', 'App\Http\Controllers\UserController@index');
 
         Route::get('/sendEmails', 'App\Http\Controllers\SendBulkMailController@show');
         Route::post('/emails', 'App\Http\Controllers\SendBulkMailController@store')->name('sendbulkmail.store');
 
     });
+    
+    Route::get('/', 'App\Http\Controllers\ProjectController@all');
+    Route::get('/myprojects', 'App\Http\Controllers\ProjectController@index');
+    Route::get('/projects/{id}', 'App\Http\Controllers\ProjectController@show')->name('project.show');
+    Route::post('/users', 'App\Http\Controllers\UserController@store')->name('user.store');
+    
 });
 
 

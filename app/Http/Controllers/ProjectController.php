@@ -20,6 +20,8 @@ class ProjectController extends Controller
     {
         if(auth()->user()){
             $projects = $this->project::where('user_id', auth()->user()->id)->get();
+        }else{
+            abort(403);
         }
         
         return view('projects.my-projects', compact('projects'));
@@ -54,6 +56,7 @@ class ProjectController extends Controller
     public function create()
     {
         $users = User::select('name', 'id')->get();
+        
         return view('projects.create-project', compact('users'));
     }
 
@@ -71,12 +74,12 @@ class ProjectController extends Controller
             'body'=> 'required'
         ]);
 
-        $project = Project::create([
-            'title' => $request->title,
-            'body' => $request->body,
-            'user_id' => $request->user_id,
-        ]);
+        $project = new Project;
 
+        $project->title = $request->title;
+        $project->body = $request->body;
+
+        $project->save();
 
         return redirect()->back()->with(
             'success',
@@ -105,7 +108,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        return redirect('/projects')->with(
+        return redirect()->back()->with(
             'success',
             'تم تعديل المشروع بنجاح'
         );

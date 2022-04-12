@@ -7,11 +7,12 @@
             <tr>
                 <th scope="col">{{__('Title')}}</th>
                 <th>{{__('description')}}</th>
-                @if (auth()->user())
+                @auth
                     @if (auth()->user()->is_admin)
-                    <th>{{__('Edit')}}</th>
+                    <th>{{__('edit')}}</th>
+                    <th>{{__('delete')}}</th>
                     @endif
-                @endif
+                @endauth
             </tr>
         </thead>
         <tbody>  
@@ -20,11 +21,24 @@
                 <tr>
                     <td><a href="{{route('project.show', $project->id)}}"><h3>{{$project->title}}</h3></a></td>
                     <td><p>{{ Str::limit($project->body, 60)}}</p></td>
-                    @if (auth()->user())
-                    @if (auth()->user()->is_admin)
-                    <td><p><a href="projects/{{$project->id}}/edit">Edit</a></p></td>
-                    @endif
-                    @endif
+                    @auth
+                        @if(auth()->user()->is_admin > 0)   
+                            <td>
+                                <form method="POST" action="{{route('projects.destroy', $project->id)}}" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف المشروع هذا ؟')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="float-left"><i class="far fa-trash-alt text-danger fa-lg"></i></button>
+                                </form>
+                            </td>            
+                            <td>
+                                <form action="{{route('projects.edit', $project->id)}}" method="get">
+                                    @csrf
+                                    @method('PATCH')
+                                    <button class="float-left" type="submit"><i class="far fa-edit text-success fa-lg ml-3"></i></button>
+                                </form>
+                            </td>
+                        @endif
+                    @endauth
                 </tr>
                 @endforeach
             </div>                       

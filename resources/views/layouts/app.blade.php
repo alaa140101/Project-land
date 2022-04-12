@@ -19,9 +19,11 @@
 
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
-    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+    {{-- <link href="{{!! asset('css/app.css') !!}}" rel="stylesheet"> --}}
+    <link rel="stylesheet" href=" {{mix ('css/app.css')}}">
 
-    <script src="https://kit.fontawesome.com/6da2c478e2.js" crossorigin="anonymous"></script>
+
+    {{-- <script src="https://kit.fontawesome.com/6da2c478e2.js" crossorigin="anonymous"></script> --}}
 
 </head>
 <body @if(LaravelLocalization::getCurrentLocale() == 'ar')
@@ -121,16 +123,21 @@
         </main>
         <footer>
             <div class="container">
-                @auth
-                <form action="{{route('user.store')}}" method="post">
-                @csrf
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" name="email">
-                        <button type="submit" class="btn btn-info">
-                            <span class="text-white">email@example.com</span>
-                        </button>
-                    </div>
-                </form>
+                @auth               
+                <form class="form-inline" action="{{route('user.store')}}" method="post">
+                    @csrf
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group mb-2">
+                                <label for="staticEmail2" class="sr-only">Email</label>
+                                <input type="text"  class="form-control" id="staticEmail2" value="email@example.com">
+                              </div>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-success mb-2">{{__('Subscribe')}}</button>
+                        </div>
+                    </div>                   
+                  </form>
                 @endauth
             </div>
         </footer>
