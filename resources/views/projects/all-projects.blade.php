@@ -23,17 +23,14 @@
                     <td><p>{{ Str::limit($project->body, 60)}}</p></td>
                     @auth
                         @if(auth()->user()->is_admin > 0)   
-                            <td>
-                                <form action="{{route('projects.edit', $project->id)}}" method="get">
-                                    @csrf
-                                    <button class="float-left" type="submit"><i class="far fa-edit text-success fa-lg ml-3"></i></button>
-                                </form>
+                            <td class="align-middle">
+                                <a href="{{route('projects.edit', $project->id)}}"><i class="far fa-edit text-success fa-lg ml-3"></i></a>
                             </td>
-                            <td>
+                            <td class="align-middle">
                                 <form method="POST" action="{{route('projects.destroy', $project->id)}}" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف المشروع هذا ؟')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="float-left"><i class="far fa-trash-alt text-danger fa-lg"></i></button>
+                                    <button type="submit" class="border-0 bg-transparent"><i class="far fa-trash-alt text-danger fa-lg"></i></button>
                                 </form>
                             </td>            
                         @endif

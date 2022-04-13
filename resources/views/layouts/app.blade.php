@@ -122,26 +122,42 @@
 
             @yield('content')
         </main>
-        <footer>
                 @auth  
-                    @if (!auth()->user()->is_subscribe)
-                    <form class="form-inline" action="{{route('user.store')}}" method="post">
-                        @csrf
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="form-group mb-2">
-                                    <label for="staticEmail2" class="sr-only">Email</label>
-                                    <input type="email" name="email"  class="form-control" id="staticEmail2" placeholder="email@example.com">
-                                </div>
+                    @if (!auth()->user()->is_subscribe)  
+                    <!-- Footer -->
+                <footer class="page-footer special-color-light pt-4 text-muted">
+                    <!-- Footer Elements -->
+                    <div class="container">
+                    <!--Grid row-->
+                    <div class="row">       
+                        <!--Grid column-->
+                        <div class="col-md-6 mb-4">
+                        <form class="input-group"  action="{{route('user.store')}}" method="post">
+                            @csrf
+                            <input type="text"  name="email" class="form-control form-control-sm" placeholder="Your email"
+                            aria-label="Your email" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                            <button class="btn btn-primary  mx-2" type="submit">{{__('Subscribe me')}}</button>
                             </div>
-                            <div class="col-4">
-                                <button type="submit" class="btn btn-success mb-2">{{__('Subscribe me')}}</button>
-                            </div>
-                    </div>                   
-                  </form>
-                  @endif
-                @endauth
-            </footer>
+                        </form>  
+                        </div>
+                        <!--Grid column-->
+                
+                    </div>
+                    <!--Grid row-->
+                
+                    </div>
+                    <!-- Footer Elements -->
+                
+                    <!-- Copyright -->
+                    <div class="footer-copyright text-center py-3">© 2022 Copyright
+                    </div>
+                    <!-- Copyright -->
+                
+                </footer>
+                <!-- Footer -->
+            @endif
+            @endauth
         </div>
     </div>
 </body>
