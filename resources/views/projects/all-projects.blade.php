@@ -24,19 +24,18 @@
                     @auth
                         @if(auth()->user()->is_admin > 0)   
                             <td>
+                                <form action="{{route('projects.edit', $project->id)}}" method="get">
+                                    @csrf
+                                    <button class="float-left" type="submit"><i class="far fa-edit text-success fa-lg ml-3"></i></button>
+                                </form>
+                            </td>
+                            <td>
                                 <form method="POST" action="{{route('projects.destroy', $project->id)}}" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف المشروع هذا ؟')">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="float-left"><i class="far fa-trash-alt text-danger fa-lg"></i></button>
                                 </form>
                             </td>            
-                            <td>
-                                <form action="{{route('projects.edit', $project->id)}}" method="get">
-                                    @csrf
-                                    @method('PATCH')
-                                    <button class="float-left" type="submit"><i class="far fa-edit text-success fa-lg ml-3"></i></button>
-                                </form>
-                            </td>
                         @endif
                     @endauth
                 </tr>
@@ -44,5 +43,9 @@
             </div>                       
         </tbody>
     </table>
+     {{-- Pagination --}}
+     <div class="d-flex justify-content-center">
+        {!! $projects->links() !!}
+    </div>
 </div>
 @endsection

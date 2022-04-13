@@ -20,7 +20,7 @@
             @enderror
           </div> 
           <div class="form-group">          
-            <label for="user_id">{{__('Users')}}</label>
+            <label for="user_id">{{__('Created By')}}</label>
               <select class="form-control select2" style="width: 100%;" name="user_id">
                 <option selected>Select One</option>          
                 @foreach($users as $user)

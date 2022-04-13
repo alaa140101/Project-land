@@ -26,21 +26,13 @@
           </div> 
           <div class="form-group row mt-2">
             <div class="col-md-4">
-                <button type="submit" class="btn btn-secondary">{{__('Edit')}}</button>
+                <button type="submit" class="btn btn-secondary">{{__('edit')}}</button>
             </div>
           </div>
-          
+        </form>          
           <small class="text-muted">                 
             <i class="fas fa-clock"></i> <span> {{$project->created_at->diffForHumans()}}</span>
-          </small>
-          @if(auth()->user()->is_admin > 0)                      
-          <form method="POST" action="{{route('projects.destroy', $project->id)}}" onsubmit="return confirm('هل أنت متأكد أنك تريد حذف المشروع هذا ؟')">
-            @csrf
-            @method('DELETE')
-            <button type="submit" class="float-left"><i class="far fa-trash-alt text-danger fa-lg"></i></button>
-            </form>           
-          @endif
-        </form>     
+          </small>                 
       </div>
     </div>
   </div>

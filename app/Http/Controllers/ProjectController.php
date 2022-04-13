@@ -43,7 +43,7 @@ class ProjectController extends Controller
 
     public function all()
     {
-        $projects = $this->project::all();
+        $projects = $this->project::paginate(20);
 
         return view('projects.all-projects', compact('projects'));
     }
@@ -78,6 +78,7 @@ class ProjectController extends Controller
 
         $project->title = $request->title;
         $project->body = $request->body;
+        $project->user_id = $request->user_id;
 
         $project->save();
 
@@ -91,20 +92,18 @@ class ProjectController extends Controller
         return view('projects.edit-project', compact('project'));
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
         $this->validate($request, [
             'title' => 'required',
             'body' => 'required',
         ]);
 
-        $project = Project::where('id', $id)->first();
+        $project->update([
+            'title'=>$request->title,
+            'body'=>$request->body,
+        ]);
         
-        $project->title = $request->title;
-        $project->body = $request->body;
-
-        $project->save();
-
         return redirect()->back()->with(
             'success',
             'تم تعديل المشروع بنجاح'
