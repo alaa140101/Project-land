@@ -21,8 +21,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // You can change Users number and Porjects 
-        $numberofUsers = 1000;
-        $userHasProjects = 5;
+        $numberofUsers = 500;
+        $userHasProjects = 3;
 
         User::factory($numberofUsers)
             ->has(Project::factory()->count($userHasProjects))

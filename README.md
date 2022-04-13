@@ -33,8 +33,8 @@
 
 ```php
 // You can change Users number and Porjects 
-        $numberofUsers = 1000;
-        $userHasProjects = 5;
+        $numberofUsers = 500;
+        $userHasProjects = 3;
 ```
 
 ثم نقوم بعمل التهجير بواسطة الامر:
