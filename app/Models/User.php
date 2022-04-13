@@ -21,6 +21,7 @@ class User extends Authenticatable
         'is_subscribe',
         'name',
         'email',
+        'password',
     ];
 
     /**

@@ -43,7 +43,7 @@ class ProjectController extends Controller
 
     public function all()
     {
-        $projects = $this->project::paginate(20);
+        $projects = $this->project::orderBy('created_at', 'desc')->paginate(20);
 
         return view('projects.all-projects', compact('projects'));
     }
