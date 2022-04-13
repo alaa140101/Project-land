@@ -32,11 +32,12 @@
         dir="ltr" style="text-align:left;" lang="en"
         @endif >
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
+        <div class="container">
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        {{ config('app.name', 'Laravel') }}
+                    </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -81,8 +82,8 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
-                            @endif
-
+                                @endif
+                                
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
@@ -112,37 +113,36 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="min-vh-70 py-4">
             @if (Session::has('success'))
                 <div class="p-3 mb-2 bg-success text-white rounded mx-auto col-8">
                     <span class="text-center">{{ session('success') }}</span>
                 </div>        
-            @endif
+                @endif
 
             @yield('content')
         </main>
         <footer>
-            <div class="container">
                 @auth  
                     @if (!auth()->user()->is_subscribe)
-                <form class="form-inline" action="{{route('user.store')}}" method="post">
-                    @csrf
-                    <div class="row">
-                        <div class="col-4">
-                            <div class="form-group mb-2">
-                                <label for="staticEmail2" class="sr-only">Email</label>
-                                <input type="email" name="email"  class="form-control" id="staticEmail2" placeholder="email@example.com">
-                              </div>
-                        </div>
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-success mb-2">{{__('Subscribe me')}}</button>
-                        </div>
+                    <form class="form-inline" action="{{route('user.store')}}" method="post">
+                        @csrf
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="form-group mb-2">
+                                    <label for="staticEmail2" class="sr-only">Email</label>
+                                    <input type="email" name="email"  class="form-control" id="staticEmail2" placeholder="email@example.com">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <button type="submit" class="btn btn-success mb-2">{{__('Subscribe me')}}</button>
+                            </div>
                     </div>                   
                   </form>
                   @endif
                 @endauth
-            </div>
-        </footer>
+            </footer>
+        </div>
     </div>
 </body>
 </html>
