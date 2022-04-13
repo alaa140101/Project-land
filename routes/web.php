@@ -32,7 +32,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
     
     Route::get('/', 'App\Http\Controllers\ProjectController@all');
     Route::get('/myprojects', 'App\Http\Controllers\ProjectController@index');
-    Route::get('/projects/{id}', 'App\Http\Controllers\ProjectController@show')->name('project.show');
+    Route::get('/projects/{id}/show', 'App\Http\Controllers\ProjectController@show')->name('project.show');
     Route::post('/subscribe', 'App\Http\Controllers\UserController@store')->name('user.store');
     
 });

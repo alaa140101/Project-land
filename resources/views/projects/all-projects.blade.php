@@ -19,7 +19,7 @@
             <div class="container">
                 @foreach($projects as $project)
                 <tr>
-                    <td><a href="{{route('projects.show', $project->id)}}"><h3>{{$project->title}}</h3></a></td>
+                    <td><a class="text-reset" href="{{route('projects.show', $project->id)}}"><h3>{{$project->title}}</h3></a></td>
                     <td><p>{{ Str::limit($project->body, 60)}}</p></td>
                     @auth
                         @if(auth()->user()->is_admin > 0)   

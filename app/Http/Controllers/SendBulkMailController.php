@@ -41,8 +41,9 @@ class SendBulkMailController extends Controller
     // How many emails per Job
     $chunkedEmails = 25;
 
+    $subscribers = User::select('email')->where('is_subscribe', true);
 
-    User::select('email')->chunk($chunkedEmails, function ($emails) use ($details) {
+    $subscribers->chunk($chunkedEmails, function ($emails) use ($details) {
       dispatch(new  SendEmailJob($details, $emails));
     });
 

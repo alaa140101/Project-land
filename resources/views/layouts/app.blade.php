@@ -123,7 +123,8 @@
         </main>
         <footer>
             <div class="container">
-                @auth               
+                @auth  
+                    @if (!auth()->user()->is_subscribe)
                 <form class="form-inline" action="{{route('user.store')}}" method="post">
                     @csrf
                     <div class="row">
@@ -134,10 +135,11 @@
                               </div>
                         </div>
                         <div class="col-4">
-                            <button type="submit" class="btn btn-success mb-2">{{__('Subscribe')}}</button>
+                            <button type="submit" class="btn btn-success mb-2">{{__('Subscribe me')}}</button>
                         </div>
                     </div>                   
                   </form>
+                  @endif
                 @endauth
             </div>
         </footer>

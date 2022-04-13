@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->enum('language', ['ar', 'en'])->default('ar');
+            $table->boolean('is_subscribe')->default(0);
         });
     }
 

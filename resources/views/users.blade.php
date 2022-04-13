@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col">{{__('Name')}}</th>
                 <th scope="col">{{__('Email')}}</th>
+                <th scope="col">{{__('Subscribe')}}</th>
                 <th scope="col">{{__('Admin')}}</th>
             </tr>
         </thead>
@@ -16,7 +17,8 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{$user->is_admin}}</td>
+                <td>{{ $user->is_subscribe == 1 ? 'True':'False' }}</td>
+                <td>{{ $user->is_admin == 1 ? 'True':'False' }}</td>
             </tr>
             @endforeach
         </tbody>
