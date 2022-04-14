@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
@@ -14,7 +16,7 @@ class UserController extends Controller
         $this->user = $user;
     }
 
-    /**
+      /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -25,19 +27,18 @@ class UserController extends Controller
     {
         $users = User::orderBy('created_at', 'desc')->paginate(20);
        
-        return view('users', compact('users'));
+        return view('users.all-users', compact('users'));
     }
 
+    
     public function update(Request $request, User $user)
     {
 
-        $this->authorize('update', $user);
+        $user = $this->user->find($request->id);
 
+        
         $user->update(['is_subscribe'=> $request->is_subscribe]);
-
-        dd($request->is_subscribe);
-
-
+        
         return redirect()->back()->with(
             'success',
             'تمت اضافة بريدك '

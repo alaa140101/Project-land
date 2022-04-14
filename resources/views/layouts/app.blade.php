@@ -131,10 +131,11 @@
                                 <div class="row">       
                                     <!--Grid column-->
                                     <div class="col-md-6 mb-4">
-                                        <form class="input-group"  action="{{route('user.update', auth()->user()->id)}}" method="post">
+                                        <form class="input-group"  action="{{route('user.update', Auth::user()->id)}}" method="post">
                                             @csrf
                                             @method('PATCH')                            
                                             <div class="form-group">
+                                                <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                                 <input type="checkbox" value="1" id="subscribe" name="is_subscribe">
                                                 <label for="subscribe">{{__('Subscribe me')}}</label>
                                                 <button class="btn btn-primary  mx-2" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
