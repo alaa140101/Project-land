@@ -28,25 +28,19 @@ class UserController extends Controller
         return view('users', compact('users'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function update(Request $request, User $user)
     {
-        $this->validate($request, [
-            'email' => 'required',
-        ]);
 
-        $user = new User;
+        $this->authorize('update', $user);
 
-        $user->email = $request->email;
+        $user->update(['is_subscribe'=> $request->is_subscribe]);
 
-        $user->save();
-        
+        dd($request->is_subscribe);
 
-        return redirect()->back()->with('success','تمت اضافة بريدك ');
+
+        return redirect()->back()->with(
+            'success',
+            'تمت اضافة بريدك '
+        );
     }
 }

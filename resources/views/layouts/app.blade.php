@@ -32,7 +32,6 @@
         dir="ltr" style="text-align:left;" lang="en"
         @endif >
     <div id="app">
-        <div class="container">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -124,41 +123,36 @@
         </main>
                 @auth  
                     @if (!auth()->user()->is_subscribe)  
-                    <!-- Footer -->
-                <footer class="page-footer special-color-light pt-4 text-muted">
-                    <!-- Footer Elements -->
-                    <div class="container">
-                    <!--Grid row-->
-                    <div class="row">       
-                        <!--Grid column-->
-                        <div class="col-md-6 mb-4">
-                        <form class="input-group"  action="{{route('user.store')}}" method="post">
-                            @csrf
-                            <input type="text"  name="email" class="form-control form-control-sm" placeholder="Your email"
-                            aria-label="Your email" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                            <button class="btn btn-primary  mx-2" type="submit">{{__('Subscribe me')}}</button>
+                        <!-- Footer -->
+                        <footer class="page-footer special-color-light pt-4 text-muted">
+                            <!-- Footer Elements -->
+                            <div class="container">
+                                <!--Grid row-->
+                                <div class="row">       
+                                    <!--Grid column-->
+                                    <div class="col-md-6 mb-4">
+                                        <form class="input-group"  action="{{route('user.update', auth()->user()->id)}}" method="post">
+                                            @csrf
+                                            @method('PATCH')                            
+                                            <div class="form-group">
+                                                <input type="checkbox" value="1" id="subscribe" name="is_subscribe">
+                                                <label for="subscribe">{{__('Subscribe me')}}</label>
+                                                <button class="btn btn-primary  mx-2" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                            </div>         
+                                        </form>  
+                                    </div>
+                                    <!--Grid column-->                
+                                </div>
+                                <!--Grid row-->                
                             </div>
-                        </form>  
-                        </div>
-                        <!--Grid column-->
-                
-                    </div>
-                    <!--Grid row-->
-                
-                    </div>
-                    <!-- Footer Elements -->
-                
-                    <!-- Copyright -->
-                    <div class="footer-copyright text-center py-3">© 2022 Copyright
-                    </div>
-                    <!-- Copyright -->
-                
-                </footer>
-                <!-- Footer -->
-            @endif
-            @endauth
-        </div>
+                            <!-- Footer Elements -->                
+                            <!-- Copyright -->
+                            <div class="footer-copyright text-center py-3">© 2022 Copyright </div>
+                            <!-- Copyright -->                
+                        </footer>
+                        <!-- Footer -->
+                    @endif
+                @endauth
     </div>
 </body>
 </html>
