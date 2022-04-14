@@ -124,13 +124,9 @@
                 @auth  
                     @if (!auth()->user()->is_subscribe)  
                         <!-- Footer -->
-                        <footer class="page-footer special-color-light pt-4 text-muted">
-                            <!-- Footer Elements -->
-                            <div class="container">
-                                <!--Grid row-->
-                                <div class="row">       
-                                    <!--Grid column-->
-                                    <div class="col-md-6 mb-4">
+                        <footer class="text-muted">
+                            <div class="d-flex justify-content-center">                            
+                                    <div>
                                         <form class="input-group"  action="{{route('user.update', Auth::user()->id)}}" method="post">
                                             @csrf
                                             @method('PATCH')                            
@@ -141,15 +137,8 @@
                                                 <button class="btn btn-primary  mx-2" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             </div>         
                                         </form>  
-                                    </div>
-                                    <!--Grid column-->                
-                                </div>
-                                <!--Grid row-->                
-                            </div>
-                            <!-- Footer Elements -->                
-                            <!-- Copyright -->
-                            <div class="footer-copyright text-center py-3">© 2022 Copyright </div>
-                            <!-- Copyright -->                
+                                    </div>                                  
+                            </div>                
                         </footer>
                         <!-- Footer -->
                     @endif
