@@ -117,6 +117,6 @@ class ProjectController extends Controller
         
         $project->delete();
 
-        return back()->with('success', 'تم حذف مقطع الفيديو بنجاح');
+        return back()->with('success', 'تم حذف المشروع بنجاح');
     }
 }
