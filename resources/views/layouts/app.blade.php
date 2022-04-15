@@ -133,7 +133,7 @@
                                             <div class="form-group">
                                                 <input type="hidden" name="id" value="{{Auth::user()->id}}">
                                                 <input type="checkbox" value="1" id="subscribe" name="is_subscribe">
-                                                <label for="subscribe">{{__('Subscribe me')}}</label>
+                                                <label for="subscribe">{{__('Subscribe Newsletters')}}</label>
                                                 <button class="btn btn-primary  mx-2" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
                                             </div>         
                                         </form>  

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    @if (is_array($projects))        
+    @if (!empty($projects))        
     <table  class="table">
         <thead>
             <tr>

@@ -17,8 +17,8 @@
             <tr>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
-                <td>{{ $user->is_subscribe == 1 ? 'True':'False' }}</td>
-                <td>{{ $user->is_admin == 1 ? 'True':'False' }}</td>
+                <td>{{ $user->is_subscribe == 1 ? 'Yes':'No' }}</td>
+                <td>{{ $user->is_admin == 1 ? 'Admin':'User' }}</td>
             </tr>
             @endforeach
         </tbody>

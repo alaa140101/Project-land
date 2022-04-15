@@ -18,6 +18,7 @@ class ProjectController extends Controller
 
     public function index()
     {
+        
         if(auth()->user()){
             $projects = $this->project::where('user_id', auth()->user()->id)->get();
         }else{
