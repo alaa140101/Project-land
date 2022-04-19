@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\{
     User,
     Project,
+    subscriber,
 };
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,14 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // You can change Users number and Porjects 
-        $numberofUsers = 500;
-        $userHasProjects = 3;
+        // You can change subscriber number 
+        $numberofSubscriber = 1000;
+        subscriber::factory($numberofSubscriber)->create();
 
-        User::factory($numberofUsers)
-            ->has(Project::factory()->count($userHasProjects))
-            ->create();
-
+        // Admin account
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@admin.com',

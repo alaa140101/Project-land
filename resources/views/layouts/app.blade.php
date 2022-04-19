@@ -50,7 +50,7 @@
                         @auth                            
                         @if (auth()->user()->is_admin)
                         <li class="nav-item">
-                            <a href="{{ LaravelLocalization::localizeUrl('/users') }}" class="nav-link">{{ __('Users') }}</a>
+                            <a href="{{ LaravelLocalization::localizeUrl('/subscribers') }}" class="nav-link">{{ __('Subscribers') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('Create Project') }}</a>
@@ -121,28 +121,21 @@
 
             @yield('content')
         </main>
-                @auth  
-                    @if (!auth()->user()->is_subscribe)  
-                        <!-- Footer -->
-                        <footer class="text-muted">
-                            <div class="d-flex justify-content-center">                            
-                                    <div>
-                                        <form class="input-group"  action="{{route('user.update', Auth::user()->id)}}" method="post">
-                                            @csrf
-                                            @method('PATCH')                            
-                                            <div class="form-group">
-                                                <input type="hidden" name="id" value="{{Auth::user()->id}}">
-                                                <input type="checkbox" value="1" id="subscribe" name="is_subscribe">
-                                                <label for="subscribe">{{__('Subscribe Newsletters')}}</label>
-                                                <button class="btn btn-primary  mx-2" type="submit"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                            </div>         
-                                        </form>  
-                                    </div>                                  
-                            </div>                
-                        </footer>
-                        <!-- Footer -->
-                    @endif
-                @endauth
+            <!-- Footer -->
+            <footer class="text-muted">
+                <div class="d-flex justify-content-center">                            
+                        <div>
+                            <form class="input-group"  action="{{route('subscriber.store')}}" method="post">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" class="p-1" name="email" id="email" placeholder="email@email.com">
+                                    <button class="btn btn-primary  mx-2" type="submit">{{__('Subscirbe mail list')}}</button>
+                                </div>         
+                            </form>  
+                        </div>                                  
+                </div>                
+            </footer>
+            <!-- Footer -->
     </div>
 </body>
 </html>

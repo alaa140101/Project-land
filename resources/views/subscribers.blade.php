@@ -6,24 +6,20 @@
     <table  class="table">
         <thead>
             <tr>
-                <th scope="col">{{__('Name')}}</th>
                 <th scope="col">{{__('Email')}}</th>
-                <th scope="col">{{__('Admin')}}</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($users as $user)
+            @foreach($subscribers as $subscriber)
             <tr>
-                <td>{{$user->name}}</td>
-                <td>{{$user->email}}</td>
-                <td>{{ $user->is_admin == 1 ? 'Admin':'User' }}</td>
+                <td>{{$subscriber->email}}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
      {{-- Pagination --}}
      <div class="d-flex justify-content-center">
-        {!! $users->links() !!}
+        {!! $subscribers->links() !!}
     </div>
 </div>
 @endsection
