@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('body');
+            $table->string('project_image');
+            $table->string('title_ar');
+            $table->text('body_ar');
+            $table->string('title_en');
+            $table->text('body_en');
             $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });

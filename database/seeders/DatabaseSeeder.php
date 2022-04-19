@@ -25,6 +25,10 @@ class DatabaseSeeder extends Seeder
         $numberofSubscriber = 1000;
         subscriber::factory($numberofSubscriber)->create();
 
+        // Call seeders for users and projects
+        $this->call(UserSeeder::class);
+        $this->call(ProjectSeeder::class);
+
         // Admin account
         DB::table('users')->insert([
             'name' => 'admin',
