@@ -15,8 +15,8 @@
                 <div class="container">
                     @foreach ($projects as $project)
                     <tr>
-                        <td><a class="text-reset" href="{{route('project.show', $project->id)}}"><h3>{{$project->title}}</h3></a></td>
-                        <td><p>{{ Str::limit($project->body, 60)}}</p></td>                    
+                        <td><a class="text-reset" href="{{route('project.show', $project->id)}}"><h3>{{app()->getLocale()== 'ar' ? $project->title_ar:$project->title_en}}</h3></a></td>
+                        <td><p>{{app()->getLocale()== 'ar' ? Str::limit($project->body_ar, 60):Str::limit($project->body_en, 60) }}</p></td>                    
                     </tr>                
                     @endforeach                
                 </div>                       

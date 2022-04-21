@@ -67,7 +67,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav">
                         <!-- Authentication Links -->
                         @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                             <li>
@@ -111,13 +111,19 @@
                 </div>
             </div>
         </nav>
-
-        <main class="min-vh-70 py-4">
-            @if (Session::has('success'))
+        <div class="container-fluid mt-1">
+            {{-- @if (Session::has('success'))
                 <div class="p-3 mb-2 bg-success text-white rounded mx-auto col-8">
                     <span class="text-center">{{ session('success') }}</span>
                 </div>        
-                @endif
+            @endif --}}
+            @if (Session::has('flash_message'))
+                        <div class="p-3 mb-2 bg-success text-white rounded text-center">
+                            {{ session('flash_message')}}
+                        </div>
+            @endif
+        </div>
+        <main class="min-vh-70 py-4">
 
             @yield('content')
         </main>
@@ -137,5 +143,7 @@
             </footer>
             <!-- Footer -->
     </div>
+
+    @yield('script')
 </body>
 </html>

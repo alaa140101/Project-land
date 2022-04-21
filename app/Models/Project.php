@@ -15,8 +15,10 @@ class Project extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'title',
-        'body',
+        'title_ar',
+        'body_ar',
+        'title_en',
+        'body_en',
         'user_id',
     ];
 

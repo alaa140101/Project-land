@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 use App\Jobs\SendEmailJob;
+use App\Models\subscriber;
 
 class SendBulkMailController extends Controller
 {
@@ -41,7 +41,7 @@ class SendBulkMailController extends Controller
     // How many emails per Job
     $chunkedEmails = 25;
 
-    $subscribers = User::select('email')->where('is_subscribe', true);
+    $subscribers = subscriber::all();
 
     $subscribers->chunk($chunkedEmails, function ($emails) use ($details) {
       dispatch(new  SendEmailJob($details, $emails));

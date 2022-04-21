@@ -27,7 +27,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
         Route::post('/emails', 'App\Http\Controllers\SendBulkMailController@store')->name('sendbulkmail.store');
     });
     
-    Route::get('/', 'App\Http\Controllers\ProjectController@all');
+    Route::get('/', 'App\Http\Controllers\ProjectController@all')->name('projects.all');
     Route::get('/myprojects', 'App\Http\Controllers\ProjectController@index');
     Route::get('/projects/{id}/show', 'App\Http\Controllers\ProjectController@show')->name('project.show');
     Route::get('/subscribers', 'App\Http\Controllers\SubscriberController@index');

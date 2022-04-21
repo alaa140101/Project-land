@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Traits\ImageUploadTrait;
 use App\Models\Project;
 use App\Models\User;
 
 class ProjectController extends Controller
 {
+    use ImageUploadTrait;
+
     public $project;
     
     public function __construct(Project $project)
@@ -70,45 +73,61 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'title' => 'required',
             'user_id' => 'required',
-            'body'=> 'required'
+            'title_ar' => 'required',
+            'project_image' => 'image|required',
+            'body_ar'=> 'required',
+            'title_en' => 'required',
+            'body_en'=> 'required',
         ]);
 
-        $project = new Project;
+        $project = new Project;       
 
-        $project->title = $request->title;
-        $project->body = $request->body;
         $project->user_id = $request->user_id;
+        $project->project_image = $this->uploadImage($request->project_image,'storage/images/projects/');
+        $project->title_ar = $request->title_ar;
+        $project->body_ar = $request->body_ar;
+        $project->title_en = $request->title_en;
+        $project->body_en = $request->body_en;
 
         $project->save();
 
-        return redirect()->back()->with('success','تمت اضافة مشروع جديد');
+        session()->flash('flash_message', 'تم إضافة المشروع بنجاح');
+
+        return redirect(route('projects.all'));
     }
     
     public function edit($id)
     {
         $project = Project::where('id', $id)->first();
+        $users = User::select('name', 'id')->get();
 
-        return view('projects.edit-project', compact('project'));
+        return view('projects.edit-project', compact('project','users'));
     }
 
     public function update(Request $request, Project $project)
     {
         $this->validate($request, [
-            'title' => 'required',
-            'body' => 'required',
+            'user_id' => 'required',
+            'title_ar' => 'required',
+            'project_image' => 'image|required',
+            'body_ar'=> 'required',
+            'title_en' => 'required',
+            'body_en'=> 'required',
         ]);
 
         $project->update([
-            'title'=>$request->title,
-            'body'=>$request->body,
+           'user_id' => $request->user_id,
+           'project_image' => $this->uploadImage($request->project_image,'storage/images/projects/'),
+           'title_ar' => $request->title_ar,
+           'body_ar' => $request->body_ar,
+           'title_en' => $request->title_en,
+           'body_en' => $request->body_en,
         ]);
         
-        return redirect()->back()->with(
-            'success',
-            'تم تعديل المشروع بنجاح'
-        );
+        session()->flash('flash_message', 'تم تعديل المشروع بنجاح');
+
+        return redirect(route('projects.all'));
     }
 
     public function destroy($id)
@@ -117,6 +136,8 @@ class ProjectController extends Controller
         
         $project->delete();
 
-        return back()->with('success', 'تم حذف المشروع بنجاح');
+        session()->flash('flash_message', 'تم حذف المشروع بنجاح');
+
+        return back();
     }
 }
