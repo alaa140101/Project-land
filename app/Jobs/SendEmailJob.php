@@ -9,7 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\subscriber;
+use App\Models\Subscriber;
 
 class SendEmailJob implements ShouldQueue
 {
@@ -39,7 +39,7 @@ class SendEmailJob implements ShouldQueue
   
   public function handle() 
   {
-    $subscribers = $this->emails ?? subscriber::all();
+    $subscribers = $this->emails ?? Subscriber::all();
     $subscribers = $this->emails;
     $input['title'] = $this->details['title'];
     $input['message'] = $this->details['message'];

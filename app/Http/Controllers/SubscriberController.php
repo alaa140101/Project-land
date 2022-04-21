@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\subscriber;
+use App\Models\Subscriber;
 
 class SubscriberController extends Controller
 {
     public $subscriber;
     
-    public function __construct(subscriber $subscriber)
+    public function __construct(Subscriber $subscriber)
     {
         $this->subscriber = $subscriber;
     }
@@ -23,7 +23,7 @@ class SubscriberController extends Controller
 
     public function index()
     {
-        $subscribers = subscriber::orderBy('created_at', 'desc')->paginate(20);
+        $subscribers = Subscriber::orderBy('created_at', 'desc')->paginate(20);
        
         return view('subscribers', compact('subscribers'));
     }
@@ -35,7 +35,7 @@ class SubscriberController extends Controller
             'email' => 'required',
         ]);
 
-        $subscriber = new subscriber;
+        $subscriber = new Subscriber;
 
         $subscriber->email = $request->email;
 
