@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\{
     User,
     Project,
-    subscriber,
+    Subscriber,
 };
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     {
         // You can change subscriber number 
         $numberofSubscriber = 1000;
-        subscriber::factory($numberofSubscriber)->create();
+        Subscriber::factory($numberofSubscriber)->create();
 
         // Call seeders for users and projects
         $this->call(UserSeeder::class);
