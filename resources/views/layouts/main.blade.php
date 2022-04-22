@@ -32,7 +32,7 @@
         dir="ltr" style="text-align:left;" lang="en"
         @endif >
     <div id="app">
-            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
                 <div class="container">
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Laravel') }}
@@ -111,18 +111,39 @@
                 </div>
             </div>
         </nav>
-        <div class="container-fluid mt-1">            
+        <div class="container-fluid mt-1">
             @if (Session::has('flash_message'))
                         <div class="p-3 mb-2 bg-success text-white rounded text-center">
                             {{ session('flash_message')}}
                         </div>
             @endif
         </div>
-        <main class="min-vh-70 py-4">
+        <main class="min-vh-100 py-4">
 
             @yield('content')
         </main>
-            
+            <!-- Footer -->           
+            <footer class="p-5 navbar-dark bg-dark shadow-sm text-white">
+              <div class="row">
+                  <form class="input-group"  action="{{route('subscriber.store')}}" method="post">
+                    @csrf
+                    <div class="d-flex w-100 gap-2">
+                        <input type="text" class="form-control w-75" name="email" id="email" placeholder="email@email.com">
+                        <button class="btn btn-primary  mx-2" type="submit">{{__('Subscirbe mail list')}}</button>
+                    </div>         
+                </form>  
+              </div>
+          
+              <div class="d-flex justify-content-between py-4 my-4 border-top">
+                <p>&copy; 2022 Company, Inc. All rights reserved.</p>
+                <ul class="list-unstyled d-flex">
+                  <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
+                  <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
+                  <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
+                </ul>
+              </div>
+            </footer>
+            <!-- Footer -->
     </div>
 
     @yield('script')

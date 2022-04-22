@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
 <div class="container">
@@ -13,18 +13,25 @@
           @method('PATCH')
           <div class="form-group">          
             <label for="user_id">{{__('Created By')}}</label>
-              <select class="form-control select2" style="width: 100%;" name="user_id">
+              <select class="form-control select2 @error('user_id') is-invalid @enderror" style="width: 100%;" name="user_id">
                 @foreach($users as $user)
-                     <option value="{{$user->id}} {{ $project->user_id == $user->id ? 'selected':'' }}">{{$user->name}}</option>
+                     <option value="{{$user->id}}" {{ $project->user_id == $user->id ? 'selected':'' }}>{{$user->name}}</option>
                 @endforeach          
               </select>
+              @error('user_id')
+              <span class="invalid-feedback">
+                <strong>{{ $message }}</strong>
+              </span>
+              @enderror
           </div>
           <div class="form-group">
             <label for="project_image" class="col-md-4 col-form-label text-md-right">{{__('Project Image')}}</label>
             <div class="col-md-6">
               <input id="project_image" accept="image/*" onchange="readCoverImage(this);" type="file" class="form-control @error('project_image') is-invalid @enderror" name="project_image" value="{{ $project->project_image }}" autocomplete="project_image">
               @error('project_image')
-              <div class="alert alert-danger">{{ $message }}</div>
+              <span class="invalid-feedback">
+                <strong>{{ $message }}</strong>
+              </span>
               @enderror
               <img id="project-image-thumb" class="img-fluid img-thumbnail">
             </div>
@@ -41,7 +48,12 @@
           </div>           
           <div class="form-group">
             <label for="body_en">{{__('Project Description in En')}}</label>
-            <textarea name="body_en" id="body_en" cols="30" rows="10"class="form-control">{{ $project->body_en }}</textarea>
+            <textarea name="body_en" id="body_en" cols="30" rows="10"class="form-control @error('body_en') is-invalid @enderror">{{ $project->body_en }}</textarea>
+            @error('body_en')
+              <span class="invalid-feedback">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
           </div> 
           <hr>
           {{-- Arabic inputs --}}
@@ -56,7 +68,12 @@
           </div>           
           <div class="form-group">
             <label for="body_ar">{{__('Project Description in Ar')}}</label>
-            <textarea name="body_ar" id="body_ar" cols="30" rows="10"class="form-control">{{ $project->body_ar }}</textarea>
+            <textarea name="body_ar" id="body_ar" cols="30" rows="10"class="form-control @error('body_ar') is-invalid @enderror">{{ $project->body_ar }}</textarea>
+            @error('body_ar')
+              <span class="invalid-feedback">
+                <strong>{{ $message }}</strong>
+              </span>
+            @enderror
           </div>
           <div class="form-group row mt-2">
             <div class="col-md-4">

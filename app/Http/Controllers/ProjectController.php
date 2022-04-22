@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Traits\ImageUploadTrait;
 use App\Models\Project;
 use App\Models\User;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -72,14 +73,10 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'user_id' => 'required',
-            'title_ar' => 'required',
-            'project_image' => 'image|required',
-            'body_ar'=> 'required',
-            'title_en' => 'required',
-            'body_en'=> 'required',
-        ]);
+        $rules = $this->getRules();
+        $messages = $this->getMessages();
+        $this->validate($request, $rules, $messages);
+       
 
         $project = new Project;       
 
@@ -107,23 +104,24 @@ class ProjectController extends Controller
 
     public function update(Request $request, Project $project)
     {
-        $this->validate($request, [
-            'user_id' => 'required',
-            'title_ar' => 'required',
-            'project_image' => 'image|required',
-            'body_ar'=> 'required',
-            'title_en' => 'required',
-            'body_en'=> 'required',
-        ]);
+        $rules = $this->getRules();
+        $messages = $this->getMessages();
+        $this->validate($request, $rules, $messages);
 
-        $project->update([
-           'user_id' => $request->user_id,
-           'project_image' => $this->uploadImage($request->project_image,'storage/images/projects/'),
-           'title_ar' => $request->title_ar,
-           'body_ar' => $request->body_ar,
-           'title_en' => $request->title_en,
-           'body_en' => $request->body_en,
-        ]);
+        if ($request->has('project_image')) {
+            Storage::disk('public')->delete($project->project_image);
+            $request->project_image = $this->uploadImage($request->project_image,'storage/images/projects/');
+        }
+
+
+        $project->user_id = $request->user_id;
+        $project->project_image = $request->project_image;
+        $project->title_ar = $request->title_ar;
+        $project->body_ar = $request->body_ar;
+        $project->title_en = $request->title_en;
+        $project->body_en = $request->body_en;
+
+        $project->save();
         
         session()->flash('flash_message', 'تم تعديل المشروع بنجاح');
 
@@ -136,8 +134,35 @@ class ProjectController extends Controller
         
         $project->delete();
 
+        Storage::disk('public')->delete($project->project_image);
+
         session()->flash('flash_message', 'تم حذف المشروع بنجاح');
 
-        return back();
+        return redirect(route('projects.all'));
+    }
+
+    protected function getRules()
+    {
+        return [
+            'user_id' => 'required|numeric',
+            'title_ar' => 'required',
+            'project_image' => 'image|mimes:jpeg,png',
+            'body_ar'=> 'required',
+            'title_en' => 'required',
+            'body_en'=> 'required',
+        ];
+    }
+    protected function getMessages()
+    {
+        return [
+            'user_id.required' => 'رقم صاحب المشروع مطلوب',
+            'user_id.numeric' => 'المدخل ليس عددي',
+            'title_ar.required' => 'عنوان المشروع مطلوب بالعربي',
+            'project_image.image' => 'صورةالمشروع مطلوبة',
+            'project_image.mimes' => 'نوع الصور المسموحة هي jpeg,png',
+            'body_ar.required' => 'وصف المشروع مطلوب بالعربي',
+            'title_en.required' => 'عنوان المشروع مطلوب بالانجليزي',
+            'body_en.required' => 'وصف المشروع مطلوب بالانجليزي',
+        ];
     }
 }
