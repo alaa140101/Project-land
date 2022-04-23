@@ -41,9 +41,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav  {{ LaravelLocalization::getCurrentLocale() == 'ar' ? 'text-right':''}}">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/') }}" class="nav-link">{{ __('main.Projects') }}</a>
                         </li>
@@ -53,7 +53,7 @@
                             <a href="{{ LaravelLocalization::localizeUrl('/subscribers') }}" class="nav-link">{{ __('main.Subscribers') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('main.Create Project') }}</a>
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl(route('projects.create')) }}" class="nav-link">{{ __('main.Create Project') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/sendEmails') }}" class="nav-link">{{ __('main.Send Emails') }}</a>

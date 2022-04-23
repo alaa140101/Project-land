@@ -14,7 +14,7 @@
                    </tr>
                    <tr>
                     <th>{{trans('main.Project Image')}}</th>
-                    <td><img src="{{ asset('storage/' . $project->project_image) }}" alt="" class="img-fluid img-thumbnail"></td>
+                    <td><img src="{{ '/storage/' . $project->project_image }}" alt="" class="img-fluid img-thumbnail"></td>
                   </tr>
                    <tr>
                     <th>{{trans('main.Details')}}</th>
