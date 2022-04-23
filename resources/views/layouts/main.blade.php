@@ -41,9 +41,9 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav  {{ LaravelLocalization::getCurrentLocale() == 'ar' ? 'text-right':''}}">
+                    <ul class="navbar-nav {{LaravelLocalization::getCurrentLocale() == 'ar' ? 'ms-auto':'me-auto'}}">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/') }}" class="nav-link">{{ __('main.Projects') }}</a>
                         </li>
