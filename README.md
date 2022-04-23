@@ -1,6 +1,6 @@
 ## عن المشروع 
 رابط المشروع 
-[project land](https://git.heroku.com/projects-land.git)
+[project land](https://projects-land.herokuapp.com/)
 
 •   الموقع يدعم اللغتين العربية و الإنجليزية
 •   متجاوب مع جميع الشاشات
