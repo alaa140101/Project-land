@@ -104,11 +104,11 @@ class ProjectController extends Controller
         if ($request->has('project_image')) {
             Storage::disk('public')->delete($project->project_image);
             $request->project_image = $this->uploadImage($request->project_image,'storage/images/projects/');
+            $project->project_image = $request->project_image;
         }
 
 
         $project->user_id = $request->user_id;
-        $project->project_image = $request->project_image;
         $project->title_ar = $request->title_ar;
         $project->body_ar = $request->body_ar;
         $project->title_en = $request->title_en;
