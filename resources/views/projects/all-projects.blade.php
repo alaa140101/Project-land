@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{__('Projects Show')}}</div>                
+                <div class="card-header">{{__('main.Projects Show')}}</div>                
                 <div class="card-body">
                     <div class="row">
                       @if (!blank($projects))

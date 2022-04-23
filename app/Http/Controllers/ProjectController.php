@@ -22,14 +22,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        
-        if(auth()->user()){
-            $projects = $this->project::where('user_id', auth()->user()->id)->get();
-        }else{
-            abort(403);
-        }
-        
-        return view('projects.my-projects', compact('projects'));
+
     }
 
     
@@ -89,7 +82,7 @@ class ProjectController extends Controller
 
         $project->save();
 
-        session()->flash('flash_message', 'تم إضافة المشروع بنجاح');
+        session()->flash('flash_message', trans('messages.Project Added successfully'));
 
         return redirect(route('projects.all'));
     }
@@ -123,7 +116,7 @@ class ProjectController extends Controller
 
         $project->save();
         
-        session()->flash('flash_message', 'تم تعديل المشروع بنجاح');
+        session()->flash('flash_message', trans('messages.Project Updated successfully'));
 
         return redirect(route('projects.all'));
     }
@@ -136,7 +129,7 @@ class ProjectController extends Controller
 
         Storage::disk('public')->delete($project->project_image);
 
-        session()->flash('flash_message', 'تم حذف المشروع بنجاح');
+        session()->flash('flash_message', trans('messages.Project deleted successfully'));
 
         return redirect(route('projects.all'));
     }
@@ -155,14 +148,14 @@ class ProjectController extends Controller
     protected function getMessages()
     {
         return [
-            'user_id.required' => 'رقم صاحب المشروع مطلوب',
-            'user_id.numeric' => 'المدخل ليس عددي',
-            'title_ar.required' => 'عنوان المشروع مطلوب بالعربي',
-            'project_image.image' => 'صورةالمشروع مطلوبة',
-            'project_image.mimes' => 'نوع الصور المسموحة هي jpeg,png',
-            'body_ar.required' => 'وصف المشروع مطلوب بالعربي',
-            'title_en.required' => 'عنوان المشروع مطلوب بالانجليزي',
-            'body_en.required' => 'وصف المشروع مطلوب بالانجليزي',
+            'user_id.required' => trans('messages.Project user id required'),
+            'user_id.numeric' =>  trans('messages.Project user id required'),
+            'title_ar.required' => trans('messages.Project Title ar'),
+            'project_image.image' => trans('messages.Project photo required'),
+            'project_image.mimes' => trans('messages.Project photo type'),
+            'body_ar.required' => trans('messages.Project details ar'),
+            'title_en.required' => trans('messages.Project Title en'),
+            'body_en.required' => trans('messages.Project details en'),
         ];
     }
 }

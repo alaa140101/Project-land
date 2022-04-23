@@ -45,22 +45,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/') }}" class="nav-link">{{ __('Projects') }}</a>
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/') }}" class="nav-link">{{ __('main.Projects') }}</a>
                         </li>
                         @auth                            
                         @if (auth()->user()->is_admin)
                         <li class="nav-item">
-                            <a href="{{ LaravelLocalization::localizeUrl('/subscribers') }}" class="nav-link">{{ __('Subscribers') }}</a>
+                            <a href="{{ LaravelLocalization::localizeUrl('/subscribers') }}" class="nav-link">{{ __('main.Subscribers') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('Create Project') }}</a>
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/projects/create') }}" class="nav-link">{{ __('main.Create Project') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/sendEmails') }}" class="nav-link">{{ __('Send Emails') }}</a>
-                        </li>
-                        @else 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/myprojects') }}" class="nav-link">{{ __('My Projects') }}</a>
+                            <a class="nav-link" href="{{ LaravelLocalization::localizeUrl('/sendEmails') }}" class="nav-link">{{ __('main.Send Emails') }}</a>
                         </li>
                         @endif
                         @endauth
@@ -79,13 +75,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('auth.Login') }}</a>
                                 </li>
                                 @endif
                                 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('auth.Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -94,11 +90,11 @@
                                     {{ Auth::user()->name }}
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <div class="dropdown-menu dropdown-menu-{{app()->getLocale()=='ar' ? 'start':'end'}}" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('auth.Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -124,23 +120,32 @@
         </main>
             <!-- Footer -->           
             <footer class="p-5 navbar-dark bg-dark shadow-sm text-white">
-              <div class="row">
+              <div class="container">
                   <form class="input-group"  action="{{route('subscriber.store')}}" method="post">
                     @csrf
-                    <div class="d-flex w-100 gap-2">
-                        <input type="text" class="form-control w-75" name="email" id="email" placeholder="email@email.com">
-                        <button class="btn btn-primary  mx-2" type="submit">{{__('Subscirbe mail list')}}</button>
+                    <div class="row w-100">
+                        <div class="col-8">
+                            <input type="text" class="form-control mx-1 @error('email') is-invalid @enderror" name="email" id="email" placeholder="email@email.com">
+                            @error('email')
+                                <span class="invalid-feedback">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="col">
+                            <button class="btn btn-primary w-40  mx-2" type="submit">{{__('main.Subscirbe')}}</button>
+                        </div>
                     </div>         
                 </form>  
               </div>
           
               <div class="d-flex justify-content-between py-4 my-4 border-top">
-                <p>&copy; 2022 Company, Inc. All rights reserved.</p>
-                <ul class="list-unstyled d-flex">
+                <p>&copy; 2022 {{ trans('main.copy right')}}</p>
+                {{-- <ul class="list-unstyled d-flex">
                   <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
                   <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"/></svg></a></li>
                   <li class="ms-3"><a class="link-dark" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"/></svg></a></li>
-                </ul>
+                </ul> --}}
               </div>
             </footer>
             <!-- Footer -->

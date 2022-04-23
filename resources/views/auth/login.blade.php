@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card">
-                    <h3 class="card-header text-center">Login</h3>
+                    <h3 class="card-header text-center">{{trans('auth.Login Page')}}</h3>
                     <div class="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -25,12 +25,12 @@
                             <div class="form-group mb-3">
                                 <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember"> Remember Me
+                                        <input type="checkbox" name="remember"> {{trans('auth.Remember Me')}}
                                     </label>
                                 </div>
                             </div>
                             <div class="d-grid mx-auto">
-                                <button type="submit" class="btn btn-dark btn-block">Signin</button>
+                                <button type="submit" class="btn btn-dark btn-block">{{trans('auth.Login')}}</button>
                             </div>
                         </form>
                     </div>

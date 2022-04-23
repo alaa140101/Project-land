@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Subscriber;
+use Illuminate\Validation\Rule;
+
 
 class SubscriberController extends Controller
 {
@@ -31,9 +33,9 @@ class SubscriberController extends Controller
     
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required',
-        ]);
+        $rules = $this->getRules();
+        $messages = $this->getMessages();
+        $this->validate($request, $rules, $messages);
 
         $subscriber = new Subscriber;
 
@@ -41,6 +43,23 @@ class SubscriberController extends Controller
 
         $subscriber->save();
 
-        return redirect()->back()->with('success', 'تمت اضافة بريدك ');
+        session()->flash('flash_message', trans('messages.Email subscribe successfully'));
+
+        return redirect()->back();
+    }
+
+    protected function getRules()
+    {
+        return [
+            'email' => "required|unique:subscribers,email|email",
+        ];
+    }
+    protected function getMessages()
+    {
+        return [
+            'email.required' => trans('messages.Email required'),
+            'email.unique' => trans('messages.Email already exist'),
+            'email.email' => trans('messages.Email not correct form'),
+        ];
     }
 }
