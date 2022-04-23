@@ -6,7 +6,7 @@
     <table  class="table">
         <thead>
             <tr>
-                <th scope="col">{{__('Email')}}</th>
+                <th scope="col">{{__('main.Emails')}}</th>
             </tr>
         </thead>
         <tbody>
