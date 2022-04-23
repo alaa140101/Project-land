@@ -132,7 +132,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <button class="btn btn-primary w-40  mx-2" type="submit">{{__('main.Subscirbe')}}</button>
                         </div>
                     </div>         

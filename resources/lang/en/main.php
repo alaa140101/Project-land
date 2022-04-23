@@ -4,6 +4,7 @@ return [
   "Project Title" =>  "Project Title",
   "Project details" => "Project Details",
   "Details" => "Details",
+  "Projects Show" => "Projects Show",
   "Project Image" => "Project Photo",
   "Projects"=>"Projects",
   "Subscribers"=>"Subscribers",
