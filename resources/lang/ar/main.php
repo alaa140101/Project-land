@@ -16,4 +16,6 @@ return [
   "Email Title"=>"عنوان الايميل",
   "Email Message"=>"نص الايميل",
   "Send"=>"ارسال",
+  "Emails"=>"الايميلات",
+
 ];

@@ -13,7 +13,7 @@
                             <div class="col-lg-4 col-md-6 col-6 mb-2">
                                 <div class="d-block mb-2 border rounded p-2">
                                     <a href="{{route('project.show', $project->id)}}" style="color:#525252;">                                        
-                                        <img src="{{ "//storage/".$project->project_image }}" alt="" class="img-fluid img-thumbnail">
+                                        <img src="{{ "/storage/".$project->project_image }}" alt="" class="img-fluid img-thumbnail">
                                         <b><p style="height: 25px">{{app()->getLocale()== 'ar' ? $project->title_ar:$project->title_en}}</p></b>
                                     </a>                                  
                                     <p>{{app()->getLocale()== 'ar' ? Str::limit($project->body_ar, 60):Str::limit($project->body_en, 60) }}</p>                                   

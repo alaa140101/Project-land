@@ -24,11 +24,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 
         Route::get('/sendEmails', 'App\Http\Controllers\SendBulkMailController@show');
         Route::post('/emails', 'App\Http\Controllers\SendBulkMailController@store')->name('sendbulkmail.store');
+        Route::get('/subscribers', 'App\Http\Controllers\SubscriberController@index');
     });
     
     Route::get('/', 'App\Http\Controllers\ProjectController@all')->name('projects.all');
     Route::get('/projects/{id}/show', 'App\Http\Controllers\ProjectController@show')->name('project.show');
-    Route::get('/subscribers', 'App\Http\Controllers\SubscriberController@index');
     Route::post('/subscribers', 'App\Http\Controllers\SubscriberController@store')->name('subscriber.store');
     
     Auth::routes();

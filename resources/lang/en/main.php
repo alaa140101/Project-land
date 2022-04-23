@@ -16,4 +16,5 @@ return [
   "Email Title"=>"Email Title",
   "Email Message"=>"Email Message",
   "Send"=>"Send",
+  "Emails"=>"Emails",
 ];
