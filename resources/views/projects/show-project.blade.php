@@ -13,6 +13,10 @@
                      <td class="lead"><b>{{app()->getLocale()== 'ar' ? $project->title_ar:$project->title_en}}</b></td>
                    </tr>
                    <tr>
+                     <th>{{trans('messages.Created By')}}</th>
+                     <td><b>{{$user->name}}</b></td>
+                   </tr>
+                   <tr>
                     <th>{{trans('main.Project Image')}}</th>
                     <td><img src="{{ '/storage/' . $project->project_image }}" alt="" class="img-fluid img-thumbnail"></td>
                   </tr>

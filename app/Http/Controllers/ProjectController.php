@@ -35,8 +35,9 @@ class ProjectController extends Controller
     public function show($id)
     {
         $project = $this->project->find($id);
-
-        return view('projects.show-project', compact('project'));
+        $user = User::select('name')->where('id', $project->user_id)->first();
+       
+        return view('projects.show-project', compact('project', 'user'));
     }
 
     public function all()
@@ -139,7 +140,7 @@ class ProjectController extends Controller
         return [
             'user_id' => 'required|numeric',
             'title_ar' => 'required',
-            'project_image' => 'image|mimes:jpeg,png',
+            'project_image' => 'image|mimes:jpeg,png|max:3072',
             'body_ar'=> 'required',
             'title_en' => 'required',
             'body_en'=> 'required',
@@ -153,6 +154,7 @@ class ProjectController extends Controller
             'title_ar.required' => trans('messages.Project Title ar'),
             'project_image.image' => trans('messages.Project photo required'),
             'project_image.mimes' => trans('messages.Project photo type'),
+            'project_image.max' => trans('validation.max.file'),
             'body_ar.required' => trans('messages.Project details ar'),
             'title_en.required' => trans('messages.Project Title en'),
             'body_en.required' => trans('messages.Project details en'),
