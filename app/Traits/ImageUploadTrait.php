@@ -5,7 +5,7 @@ namespace App\Traits;
 trait ImageUploadTrait
 {
 
-  protected $image_path = "app/public/images/projects";
+  protected $image_path = "storage/images/projects";
   protected $img_height = 600;
   protected $img_width = 600;
 
