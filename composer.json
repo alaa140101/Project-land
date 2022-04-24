@@ -14,7 +14,8 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
-        "mcamara/laravel-localization": "^1.7"
+        "mcamara/laravel-localization": "^1.7",
+        "ext-gd": "*"
     },
     "require-dev": {
         "laravel/sail": "^1.0.1",
