@@ -4,13 +4,22 @@ namespace App\Traits;
 
 trait ImageUploadTrait
 {
-  function uploadImage($photo,$folder){
-    // save photo in folder
-    $file_extension = $photo->getClientOriginalExtension();
-    $file_name = 'images/projects/'.time().'.'.$file_extension;
-    $path = $folder;
-    $photo->move($path,$file_name);
-    
-    return $file_name;
+
+  protected $image_path = "app/public/images/projects";
+  protected $img_height = 600;
+  protected $img_width = 600;
+
+  public function uploadImage($img)
+  {
+    $img_name = $this->imageName($img);
+    \Image::make($img)->resize($this->img_width, $this->img_height)->save(storage_path($this->image_path.'/'.$img_name));
+
+    return "images/projects/".$img_name;
   }
+
+  public function imageName($image)
+  {
+    return time().'-'.$image->getClientOriginalName();
+  }
+
 }
